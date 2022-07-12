@@ -42,8 +42,9 @@
                 <form th:method="GET" th:action="@{/edit/{id} (id=${user.getId()})}">
                     <input type="submit" value="Edit"/>
                 </form>
-                <form th:method="DELETE" th:action="@{/{id} (id=${user.getId()})}">
-                    <input type="submit" value="Delete"/>
+                <form th:action="@{/delete/{id} (id=${user.getId()})}" th:object="${user}">
+                    <input type="hidden" name="id" th:value="${user.getId()}">
+                    <button type="submit">Delete</button>
                 </form>
             </td>
         </tr>

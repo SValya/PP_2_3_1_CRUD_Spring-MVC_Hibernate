@@ -26,33 +26,33 @@ public class UserController {
         model.addAttribute("users", users);
         return "users";
     }
-///
+
     @GetMapping(value = "/edit/{id}")
     public String editPage(@PathVariable("id") Long id, Model model) {
         User user = userService.getById(id);
         model.addAttribute("user", user);
         return "editPage";
     }
-////
+
     @GetMapping("/new")
     public String newUser(@ModelAttribute("user") User user) {
         return "new";
     }
-////
+
     @PostMapping
     public String create(@ModelAttribute("user") User user) {
         userService.add(user);
         return "redirect:/";
     }
-/////
+
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
         userService.edit(user);
         return "redirect:/";
     }
-////
-    @DeleteMapping("/{id}")
-    public String delete(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
+
+    @GetMapping(value = "/delete/{id}")
+    public String delete(@ModelAttribute("user") User user, @RequestParam(value = "id") Long id) {
         userService.remove(id);
         return "redirect:/";
     }
